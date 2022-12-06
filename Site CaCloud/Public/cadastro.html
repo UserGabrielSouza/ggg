@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | Cacloud</title>
+  <link rel="icon" href="./style/assets/img/logo/logo-preto.png">
+  <link rel="stylesheet" href="./style/nav.css">
+  <link rel="stylesheet" href="./style/cadastro.css">
+</head>
+
+<body>
+  <nav class="stroke">
+    <a href="./index.html">
+      <div class="img-nav">
+        <img src="./style/assets/img/logo/logo-preto.png" alt="">
+      </div>
+    </a>
+    <ul>
+      <li><a href="./index.html">Inicio</a></li>
+      <li><a href="./Sobrenos.html">Sobre nós</a>
+      </li>
+      <li><a href="./simulador.html">Simulador
+          financeiro</a></li>
+      <li><a href="./login.html">Login</a>
+      <li><a href="./cadastro.html">Cadastro</a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="div">
+      <div class="form">
+
+        <h1>Seja bem vindo!</h1>
+        <input type="text" placeholder="Nome" id="ipt_nome">
+
+        <input type="text" placeholder="Sobrenome" id="ipt_sobrenome">
+
+        <input type="email" placeholder="nome@email.com" id="ipt_email">
+
+        <input type="text" placeholder="CPF" id="ipt_cpf">
+
+        <input type="text" placeholder="Telefone celular" id="ipt_cel">
+
+        <input type="password" placeholder="******" id="ipt_senha">
+
+        <input type="password" placeholder="******" id="ipt_confirm_senha">
+        <button onclick="cadastrar()">Cadastrar</button>
+
+        <p>Já tem conta? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+    <div class="foto">
+      
+    </div>
+  </div>
+  
+
+</body>
+
+</html>
+
+<script>
+  function cadastrar() {
+      var nomeVar = ipt_nome.value
+      var sobrenomeVar = ipt_sobrenome.value
+      var emailVar = ipt_email.value
+      var cpfVar = ipt_cpf.value
+      var celVar = ipt_cel.value
+      var senhaVar = ipt_senha.value
+      var confirmSenha = ipt_confirm_senha.value
+
+      if (nomeVar == "" || sobrenomeVar == "" || emailVar == "" || cpfVar == "" || celVar == "" || senhaVar == "" || confirmSenha == "") {
+
+          alert(`Por favor inserir dados nos campos abaixo.`)
+          return false;
+
+      } else if (senhaVar != confirmSenha) {
+
+          alert(`As senhas inseridas não coincidem.`)
+          return false;
+
+      } else if (Number.isNaN(cpfVar) || Number.isNaN(celVar)) {
+
+          alert(`Por favor verifique se os números nos campos cpf e celular são válidos`)
+          return false;
+
+      } else {
+        // alert(`Tentando cadastrar`)
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                sobrenomeServer: sobrenomeVar,
+                emailServer: emailVar,
+                cpfServer: cpfVar,
+                celServer: celVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              // cardErro.style.display = "block";
+              
+              // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+              
+                alert(`Cadastro feito com sucesso!`)
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, "2000")
+                
+                // limpardivulario();
+                // finalizarAguardar();
+            } else {
+              throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+      }
+      
+  }
+</script>

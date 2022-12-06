@@ -1,0 +1,163 @@
+* {
+    font-family: 'Comfortaa', cursive;
+    padding: 0;
+    margin: 0
+}
+body {
+  
+    font-family: 'Comfortaa', cursive;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    display: flex;
+    width: 600px;
+    justify-content: space-around;
+    color: #ffffff;
+    list-style: none;
+    align-items: center;
+}
+
+.titulo {
+    display: flex;
+}
+
+.titulo img {
+    width: 200px;
+
+}
+
+.titulo h1 {
+    margin: 50px 20px;
+    font-family: Comfortaa;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 33px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+}
+
+
+
+/* Banner */
+.banner {
+    color: white;
+    padding: 40px 0;
+    height: 600px;
+    background-size: cover;
+}
+
+.banner .container {
+    margin-top: 125px;
+    justify-content: left;
+    align-items: center;
+}
+
+.banner .container span {
+    font-weight: 800;
+}
+
+.banner p {
+    font-size: 36px;
+    width: 500px;
+}
+
+.banner h1 {
+    font-size: 50px;
+    width: 250px;
+}
+
+/*Começo da estilização do form da calculadora - parte de fora*/
+.bannerteste {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    height: 500px;
+
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 900px;
+    height: 500px;
+    /*Bordas arredondadas*/
+    border-radius: 8px;
+    color: black;
+    background-color: whitesmoke;
+    -webkit-box-shadow: 10px 10px 40px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 40px -4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 40px -4px rgba(0,0,0,0.75);
+    margin-bottom: 3%;
+}
+
+/*Resultado da conta*/
+#resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    font-size: 15px;
+    margin-left: 50px;
+}
+
+input {
+    padding: 10px 35px;
+    margin-left: 50px;
+    border: none;
+    border-bottom: 2px solid #734945;
+
+}
+
+p {
+    margin-left: 50px;
+}
+
+.btcal {
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #734945;
+    border-radius: 3%;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-left: 90px;
+    background-color: #734945;
+    color: white;
+    cursor: pointer;
+
+}
+
+/* Footer - nosso rodapé*/
+/* .footer{
+    border-top: solid 3px #ffffff;
+    background-color: #734945;
+    height: 150px;
+    color: #fff;
+    display: flex;
+}
+
+.footer .container{
+    display: flex;
+    justify-content: right;
+}
+
+.footer .container .navbar_footer {
+    padding-right: 100px;
+}
+
+.footer img{
+    padding-left: 100px;
+} */

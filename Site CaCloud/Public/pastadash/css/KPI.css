@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'comfortaa';
+  text-decoration: none;
+
+
+}
+
+button{
+  color: #efefef;
+  background-color: #248d07;
+  position: relative;
+  left: 500px;
+  bottom: 50px;
+}
+.graph{
+position: relative;
+left: 350px;
+width: 500px;
+border:solid 1px #248d07;
+
+}
+.wrapper .sidebar {
+  background: #668C3F;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 225px;
+  height: 100%;
+  padding: 20px 0;
+  transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile {
+  margin-bottom: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.wrapper .sidebar .profile img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3 {
+  color: #ffffff;
+  margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+}
+
+.wrapper .sidebar ul li a {
+  display: block;
+  padding: 13px 30px;
+  border-bottom: 1px solid #fff;
+  color: rgb(241, 237, 237);
+  font-size: 16px;
+  position: relative;
+}
+
+.wrapper .sidebar ul li a .icon1 {
+  color: #ffffff;
+  width: 30px;
+  display: inline-block;
+}
+
+
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active {
+  color: #668C3F;
+
+  background: white;
+  border-right: 2px #668C3F;
+}
+
+.wrapper .sidebar ul li a:hover .icon1,
+.wrapper .sidebar ul li a.active .icon1 {
+  color: #668C3F;
+  ;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before {
+  display: block;
+}
+
+.wrapper .section {
+  width: calc(100% - 225px);
+  margin-left: 225px;
+  transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar {
+  background: #668C3F;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+
+}
+
+.wrapper .section .top_navbar .hamburger a {
+  font-size: 28px;
+  color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover {
+  color: #a2ecff;
+}
+
+
+
+body.active .wrapper .sidebar {
+  left: -225px;
+}
+
+body.active .wrapper .section {
+  margin-left: 0;
+  width: 100%;
+}
+
+.grafico {
+  margin-top: 50px;
+  margin-left: 15%;
+  display: flex;
+  align-items: center;
+  height: 500px;
+  width: 700px;
+
+}
+
+.grafico1 {
+  margin-top: 0px;
+  margin-left: 15%;
+  display: flex;
+  align-items: center;
+  height: 500px;
+  width: 700px;
+
+}
+
+.legenda {
+  margin-top: 20px;
+  margin-left: 10%;
+  height: 200px;
+  width: 500px;
+  display: flex;
+  flex-direction: column
+}
+
+.legenda i {
+  height: 10px;
+  padding: 20px;
+  font-size: 20px;
+  width: 525px;
+}
+
+.icon1 {
+  float: right;
+  font-size: 500%;
+  position: absolute;
+  top: 0rem;
+  right: -0.3rem;
+  opacity: .16;
+
+}
+
+
+#container {
+  width: 120px;
+  display: flex;
+  right: 150px;
+}
+
+.grey-dark {
+  background: #9473e5;
+  color: #efefef;
+}
+
+.grey-dark1 {
+  background: #e8d905;
+  color: #ffffff;
+}
+
+.grey-dark2 {
+  background: #ff7700;
+  color: #efefef;
+}
+
+.grey-dark3 {
+  background: #ff0000;
+  color: #ffffff;
+}
+
+.grey-dirk {
+  background: #248d07;
+  color: #efefef;
+  top: -22px;
+  font-size: 9px;
+  margin-left: 7em;
+  margin-bottom: 12px;
+  top: -21px;
+  left: 25px;
+
+
+}
+
+.card-value3 {
+  position: relative;
+  top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.red-gradient {
+  background: linear-gradient(180deg, rgba(207, 82, 82, 1) 0%, rgba(121, 9, 9, 1) 80%);
+  color: #fff;
+}
+
+.red {
+  background: #9473e5;
+  color: #fff;
+}
+
+
+.purple {
+  background: #4839e4;
+  color: #fff;
+}
+
+.orange {
+  background: #a508ad;
+  color: #fff;
+}
+
+.card-value3 {
+  position: relative;
+
+}
+
+.kpi-card {
+  overflow: hidden;
+  position: relative;
+  left: 220px;
+  top: 90px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  ;
+  display: inline-block;
+  float: left;
+  padding: 1em;
+  border-radius: 0.3em;
+  font-family: sans-serif;
+  width: 100px;
+  height: 70px;
+  min-width: 120px;
+  margin-left: 1.9em;
+  margin-top: 0.5em;
+}
+
+.card-text1 {
+  font-size: 12px;
+  align-items: flex-end;
+  position: relative;
+  top: 20px;
+
+}
+
+.icon23 {
+  position: relative;
+  left: 80px;
+}
+
+.icon2 {
+  float: right;
+  font-size: 900%;
+  position: absolute;
+  top: 0rem;
+  right: -0.3rem;
+  opacity: .16;
+}
+
+.card-value {
+  display: block;
+  font-size: 200%;
+  font-weight: bolder;
+}
+
+.card-text {
+  position: relative;
+  font-size: 12px;
+  bottom: 20px;
+  padding-left: 0.2em;
+}
+
+.icon-box {
+  display: flex;
+  justify-content: space-around;
+}

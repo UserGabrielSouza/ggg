@@ -1,0 +1,109 @@
+* {
+    font-family: 'Comfortaa', cursive;
+    padding: 0;
+    margin: 0
+}
+nav ul {
+	text-align: center;
+}
+
+nav ul li {
+  width: 70px;
+  cursor: pointer;
+	background: #668C3F;
+	text-transform: uppercase;
+	transition:all .4s ease-out;
+}
+
+/* Organização dos cubos na animação */
+nav ul li:after {
+	position: absolute;
+	background: white;
+	color: #274422;
+	left: 70px;
+	width: 70px; height: 100%;
+  /* Esconde a fileira de nomes ao lado */
+  transform: perspective(400px) rotateY(90deg);
+	transform-origin: 0 100%;
+	transition:all .4s ease-out;
+}
+
+nav ul li:nth-child(1):after { 
+	content: "Inicio";
+	line-height: 88px;
+}
+nav ul li:nth-child(2):after { 
+	content: "Gráficos";
+	line-height: 88px;
+}
+nav ul li:nth-child(3):after { 
+	content: "Ajuda";
+	line-height: 85px;
+}
+nav ul li:nth-child(4):after { 
+	content: "Suporte";
+	line-height: 70px;
+}
+
+/* Animação da linha de nomes subindo */
+nav ul li:hover {
+	transform: translateX(-70px);
+}
+
+/* Animação das caixinhas virando e letras */
+nav ul li:hover:after {
+  opacity: 1;
+	transform: perspective(400px) rotateY(0deg) scale(1) ;
+}
+
+/* Organização das caixinhas e icons */
+nav ul li > div {
+	display: inline-block;
+	padding: 25px 0;
+	background: transparent;
+}
+
+nav ul li div { position: relative; }
+
+/* Teto da casinha */
+.roof {
+	width: 33px;
+	height: 30px;
+	top:2px;
+background-image: url("https://cdn-icons-png.flaticon.com/512/1255/1255822.png?w=740&t=st=1665701511~exp=1665702111~hmac=c41449134c8f48c94172113a30e577742ba1ba8ebf811bd8f5baf11eb4d511d2");
+background-size: 33px;
+background-position: center;
+}
+
+/*/// About me ////*/
+
+.head {
+	width: 32px;
+	height: 35px;
+	background-image: url("https://cdn-icons-png.flaticon.com/512/1256/1256936.png");
+  background-size: 33px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/*//work//*/
+
+.paper {
+	position: relative;
+	height:32px;
+	width: 29px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/1067/1067566.png?w=740&t=st=1665700946~exp=1665701546~hmac=5af71f425ecd949716c22ff95c2f4bfd6a27e9ebf44fd12595ce9a59578f8d73");
+  background-size: 33px;
+  background-position: center;
+}
+
+/*//mail //*/
+
+.mail-base {
+	position: relative;
+	width: 32px;
+	height: 30px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/1067/1067566.png?w=740&t=st=1665700946~exp=1665701546~hmac=5af71f425ecd949716c22ff95c2f4bfd6a27e9ebf44fd12595ce9a59578f8d73");
+  background-size: 33px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

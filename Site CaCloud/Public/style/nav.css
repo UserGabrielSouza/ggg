@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2%;
+
+}
+
+.img-nav {
+  height: 60px;
+  width: 60px;
+}
+
+.img-nav img {
+  height: 60px;
+}
+
+nav ul {
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+  padding-left: 30%;
+  padding-right: 2%;
+  padding-bottom: 1%;
+  padding-top: 1%;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  width: 100%;
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 600;
+
+}
+
+/* Animação da linha */
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+
+/* Linha */
+nav.stroke ul li a,
+nav.fill ul li a {
+  position: relative;
+}
+
+/* consigurações da linha, onde está localizada, onde começa etc */
+nav.stroke ul li a:after,
+nav.fill ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: black;
+  height: 1px;
+}
+
+/* animação */
+nav.stroke ul li a:hover:after {
+  width: 100%;
+}
+
+/* tempo de animação */
+nav.fill ul li a {
+  transition: all 2s;
+}

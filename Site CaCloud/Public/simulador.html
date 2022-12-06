@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador | Cacloud</title>
+    <link rel="icon" href="./style/assets/img/logo/logo-preto.png">
+    <link rel="stylesheet" href="./style/simulador.css">
+    <link rel="stylesheet" href="./style/nav.css">
+    <link rel="stylesheet" href="./style/footer2.css">
+</head>
+
+<body>
+    <nav class="stroke">
+        <a href="./index.html">
+            <div class="img-nav">
+                <img src="style/assets/img/logo/logo-preto.png" alt="">
+            </div>
+        </a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="Sobrenos.html">Sobre nós</a></li>
+            <li><a href="simulador.html">Simulador financeiro</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="bannerteste">
+        <div class="container">
+            <div class="box">
+                <div class="calculadora">
+                    <p>Quantos hectares você possui?</p>
+                    <input type="text" id="ipt_hectare" placeholder="Inserir um valor em hm²(ha)">
+                    <br><br>
+
+                    <p>Preço do KG do cacau</p>
+                    <input type="text" id="ipt_cacau" placeholder="Inserir um valor em R$(reais)">
+                    <br><br><br>
+
+                    <button onclick="bt_cal()" class="btcal">CALCULAR</button>
+                    <br><br>
+                </div>
+                <div style="border-left: 1px solid #734945; padding-left: 50px;" id="resultado">
+                    <img src="style/assets/img/logo/logo-preto.png" width="400px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ul class="icons">
+            <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png?w=740&t=st=1666053666~exp=1666054266~hmac=0b25b716fa72a06cd08129dd94e8cd7e4a7923fda6367aa16bd2cadb07ec38c9" width="30px"></a></li>
+            <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/49/49408.png?w=740&t=st=1666053868~exp=1666054468~hmac=dfd2fe3dd423c57f8b2678a91941131a319e0512c7c71bb283f9ba74b31a0e29" width="30px"></a></li>
+            <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1239/1239295.png?w=740&t=st=1666053935~exp=1666054535~hmac=4898be6f6c18bd1ffc341422ba1ecedb36eb573542624c91a14bbf7ccbe40cd3" width="30px"></a></li>
+           
+        </ul>
+        <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Sobrenos.html">Sobre nós</a></li>
+                <li><a href="simulador.html">Simulador financeiro</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                
+        </ul>
+            <div class="footer-copyright">
+                <p>Copyright Cacloud 2022 All Rights Reserved.</p>
+            </div>
+    </footer>
+</body>
+
+</html>
+<script>
+    function bt_cal() {
+
+        var hectare = Number(ipt_hectare.value)
+        var valorcacau = Number(ipt_cacau.value)
+        var arvoresporhectare = Number(hectare) * 1100 //Árvores médias
+        var capsulastotais = Number(arvoresporhectare) * 25 //Produção média por árvore
+        var valorplantacao = Number(capsulastotais) * valorcacau //Cotação média cacau
+        var valortotalcomperda = Number(valorplantacao) * 0.60
+        var valorrecuperado = Number(valorplantacao) - Number(valortotalcomperda)
+
+        if (Number.isNaN(hectare) || hectare <= 0) {
+            alert('Por favor insira um número de hectares válido que seja maior que 0.')
+
+        } else
+        if (Number.isNaN(valorcacau) || valorcacau <= 0) {
+            alert('Por favor insira um número válido no preço do cacau que seja maior que 0.')
+
+        } else {
+
+            resultado.innerHTML = `Supondo que em 1 hectare existem plantadas 1100 arvores de cacau. Com base nos dados informados, em sua fazenda de cacau, você possuí aproximadamente <b style="color: green;">${arvoresporhectare.toLocaleString()}</b> árvores<br><br>
+
+            Considerando que cada pé de cacau produz 26 cacaus, em 6 mêses você produz por volta de 
+            <b style="color: chocolate;">${capsulastotais.toLocaleString()}</b> cacaus.<br><br>
+
+            Baseando-se que a vassoura de bruxa pode devastar de 30 a 90%, tendo uma média de 60% em todas as lavouras.
+            Se sua plantação for afetada pela doença, estima-se que você fature apenas <b style="color: green;">${valortotalcomperda.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</br></b><br>
+
+            Utilizando nosso produto você tem um auxilio no monitoramento para obter um ganho de até <b style="color: green;">${valorrecuperado.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</br></b>
+            <br>
+
+            Assim sendo, é estimado que você fature <b style="color: green;">${valorplantacao.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</br></b>`
+
+            ipt_cacau.value = " "
+            ipt_hectare.value = " "
+        }
+    }
+</script>

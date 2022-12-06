@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loging | Cacloud</title>
+  <link rel="icon" href="./style/assets/img/logo/logo-preto.png">
+  <link rel="stylesheet" href="./style/nav.css">
+  <link rel="stylesheet" href="./style/login2.css">
+</head>
+
+<body>
+  <nav class="stroke">
+    <a href="./index.html">
+      <div class="img-nav">
+        <img src="./style/assets/img/logo/logo-preto.png" alt="">
+      </div>
+    </a>
+    <ul>
+      <li><a href="./index.html">Inicio</a></li>
+      <li><a href="./Sobrenos.html">Sobre nós</a>
+      </li>
+      <li><a href="./simulador.html">Simulador
+          financeiro</a></li>
+      <li><a href="./login.html">Login</a>
+      <li><a href="./cadastro.html">Cadastro</a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="div">
+      <div class="form">
+
+        <h1>Bem vindo de volta!</h1>
+        <input type="email" placeholder="nome@email.com" name="email" id="ipt_email">
+
+        <input type="password" placeholder="senha" name="senha" id="ipt_senha">
+
+        <button onclick="entrar()">Entrar</button>
+
+        <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+      </div>
+    </div>
+    <div class="foto">
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script>
+  function entrar() {
+    var emailVar = ipt_email.value
+    var senhaVar = ipt_senha.value
+
+
+    if (emailVar == "" || senhaVar == "") {
+
+      alert(`Por favor inserir dados nos campos abaixo.`)
+      return false;
+
+    } else {
+
+      // aguardar();
+
+      // var emailVar = email_input.value;
+      // var senhaVar = senha_input.value;
+
+      // if (emailVar == "" || senhaVar == "") {
+      //   cardErro.style.display = "block"
+      //   mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      //   finalizarAguardar();
+      //   return false;
+      // }
+      // else {
+      //   setInterval(sumirMensagem, 5000)
+      // }
+
+      console.log("div LOGIN: ", emailVar);
+      console.log("div SENHA: ", senhaVar);
+
+      fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        })
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+          
+          resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            
+            sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+            sessionStorage.NOME_USUARIO = json.nomeUsuario;
+            sessionStorage.ID_USUARIO = json.idUsuario;
+            
+            alert(`Login feito com sucesso!`)
+            console.log(resposta);
+
+            setTimeout(function () {
+              window.location.href = "./pastadash/dash.html";
+              
+            }, 1000); // apenas para exibir o loading
+
+          });
+
+        } else {
+
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then(texto => {
+            console.error(texto);
+            // finalizarAguardar(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+      return false;
+    }
+
+    // function sumirMensagem() {
+    //   cardErro.style.display = "none"
+
+    // }
+
+  }
+</script>
+

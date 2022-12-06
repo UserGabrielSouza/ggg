@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/logo-preto.png">
+  <link rel="stylesheet" href="./css/KPI.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+
+  <title>Dashboard | CaCloud</title>
+</head>
+
+<body onload = "validarSessao(), atualizacaoPeriodica()">
+  <div class="wrapper">
+    <div class="section">
+      <div class="top_navbar">
+        <div class="hamburger">
+          <a href="#">
+            <p class="" style=" font-family: 'comfortaa';">CaCloud</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="sidebar">
+      <div class="profile">
+        <img src="./img/user.png" alt="" srcset="">
+        <h3>Olá - <div id="b_usuario"></div></h3>
+        <p style="color: white;">Cacau-Show</p>
+      </div>
+      <ul>
+        <li>
+          <a href="./dash.html">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="item">Fazendas</span>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="../login.html" >
+              <span class="icon"><i class="fas fa-chevron-left"></i></span>
+              <span class="item">Voltar</span>
+          </a>
+      </li>
+      </ul>
+    </div>
+    <div id="container">
+      <div class="kpi-card orange">
+        <span class="card-value">21.5°</span><br>
+        <span class="card-text">Crítico</span>
+        <i class="fa fa-exclamation-circle icon1"></i>
+      </div>
+
+
+      <div class="kpi-card purple">
+        <span class="card-value">22.5°</span><br>
+        <span class="card-text">Emergência</span>
+        <i class="fas fa-temperature-high icon1"></i>
+      </div>
+
+      <div class="kpi-card grey-dark">
+        <span class="card-value">23.5°</span> <br>
+        <span class="card-text">Alerta</span>
+        <i class="fas fa-temperature-low icon1"></i>
+      </div>
+
+      <div class="kpi-card grey-dirk">
+        <span class="card-value3">23º 24º 25º</span><br>
+        <span class="card-text1">Ideal</span>
+        <i class="fas fa-temperature-low icon2"></i>
+      </div>
+
+      <div class="kpi-card grey-dark1">
+        <span class="card-value">25.6°</span><br>
+        <span class="card-text">Alerta</span>
+        <i class="fas fa-temperature-high icon1"></i>
+      </div>
+
+      <div class="kpi-card grey-dark2">
+        <span class="card-value">26.5°</span><br>
+        <span class="card-text">Emergência</span>
+        <i class="fas fa-temperature-high icon1"></i>
+      </div>
+
+      <div class="kpi-card grey-dark3">
+        <span class="card-value">27.5°</span><br>
+        <span class="card-text">Crítico</span>
+        <i class="fa fa-exclamation-circle icon1"></i>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="conteiner-conteudo">
+
+    <div class="conteiner-escolha">
+
+        <!-- BOTOES DE CADA GRAFICO DO CORREDOR -->
+        <div class="titulos">
+          <button class="btn-chart" onclick="obterDadosGrafico(1)">Corredor 1</button>
+            <button class="btn-chart" onclick="obterDadosGrafico(2)">Corredor 2</button>
+            <button class="btn-chart" onclick="obterDadosGrafico(3)">Corredor 3</button>
+            <button class="btn-chart" onclick="obterDadosGrafico(4)">Corredor 4</button>
+            
+        </div>
+
+    </div>
+
+    <!-- GRARFICO -->
+    
+
+</div>
+</div>
+  <div class="grafico">
+    <div class="graph">
+      <canvas id="canvas_grafico" style="width: 700px;"></canvas>
+  </div>
+    <canvas id="canteiro1"></canvas>
+    <div class="legenda">
+      <h1>Status canteiro</h1>
+      <i>Seu canteiro teve 15 variações críticas</i>
+      <i>Seu canteiro teve 6 variações de emergência</i>
+      <i>Seu canteiro teve 13 variações de alerta</i>
+      <i>Seu canteiro teve 21 variações ideias</i>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="grafico1">
+    <canvas id="canteiro2"></canvas>
+    <div class="legenda">
+      <h1>Status canteiro</h1>
+      <i>Seu canteiro teve 9 variações críticas</i>
+      <i>Seu canteiro teve 12 variações de emergência</i>
+      <i>Seu canteiro teve 5 variações de alerta</i>
+      <i>Seu canteiro teve 29 variações ideias</i>
+
+
+    </div> -->
+  </div>
+
+
+</body>
+
+</html>
+<script>
+  // let = var; por escopo, nasce e morre dentro de uma função
+  let proximaAtualizacao;
+
+window.onload = obterDadosGrafico(1);
+
+verificar_autenticacao();
+
+// Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+// para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+// A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+
+function obterDadosGrafico(idAquario) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarGrafico(resposta, idAquario);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta, idAquario) {
+    console.log('iniciando plotagem do gráfico...');
+
+
+
+
+    var dados = {
+        labels: [],
+        datasets: [
+            {
+                yAxisID: 'y-chave',
+                label: 'Chave',
+                borderColor: '#32B9CD',
+                backgroundColor: '#32b9cd8f',
+                fill: true,
+                data: []
+            }
+        ]
+    };
+
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        dados.labels.push(registro.momento_grafico);
+        dados.datasets[0].data.push(registro.chave);
+        /*  dados.datasets[1].data.push(registro.temperatura); */
+    }
+
+    console.log(JSON.stringify(dados));
+
+    var ctx = canvas_grafico.getContext('2d');
+    window.grafico_linha = Chart.Line(ctx, {
+        data: dados,
+        options: {
+            responsive: true,
+            animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: false,
+            
+            title: {
+                display: true,
+                text: 'Temperatura'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-chave',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+            }
+        }
+    });
+
+    setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+}
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+
+function atualizarGrafico(idAquario, dados) {
+
+    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico: ${dados}`);
+
+                // tirando e colocando valores no gráfico
+                dados.labels.shift(); // apagar o primeiro
+                dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                dados.datasets[0].data.push(novoRegistro[0].chave); // incluir uma nova medida de umidade
+
+                /* dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+*/
+                window.grafico_linha.update();
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO
+</script>
