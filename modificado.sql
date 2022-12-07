@@ -72,14 +72,14 @@ CREATE TABLE Sensor (
 		REFERENCES Canteiro (idCanteiro)
 ) auto_increment = 100;
 
-CREATE TABLE Captura (
+/*CREATE TABLE Captura (
 IdDados INT PRIMARY KEY AUTO_INCREMENT,
 Temp double,
 dataDado DATETIME,
 fkSensor INT,
     FOREIGN KEY (fkSensor)
 		REFERENCES Sensor (idSensor)
-);
+);*/
 
 -- Selects separados
 select * from CadastroEmpresa;
@@ -92,6 +92,7 @@ select * from Captura;
 -- inserindo dados nas tabelas
 insert into CadastroEmpresa values
 	(null, 'Alexandre', 'Costa','alexandre@email.com', 32143933000124, 11912345678, 1112345678);
+    
     (null, 'Celso', 'Ricardo', 'Cacau Brasil', 'Celso@email.com', 15915785000108, 11988776655, 1122334455),
     (null, 'David', 'Kopenhagen', 'Kopenhagen', 'david@email.com', 61158283017750, 11977665544, 1133445566),
     (null, 'Rodolphe', 'Lindt', 'Lindt & Sprüngli', 'rodolphe@email.com', 20702154000132, 11966554433, 1144556677),
@@ -107,13 +108,14 @@ insert into CadastroUsuario values
     
     
 insert into fazenda values
-	(null, 44911970, 'FZND-Cacau-show', 900, 'Roberto Augusto', 7712345678, 1),
-	(null, 57430970, 'FZND-Cacau Brasil', 550, 'Cleo Vasconcelos', 822345678, 2),
+	(null, 44911970, 'FZND-Cacau-show', 900, 'Roberto Augusto', 7712345678, 1);
+    
+	/*(null, 57430970, 'FZND-Cacau Brasil', 550, 'Cleo Vasconcelos', 822345678, 2),
     (null, 57331970, 'FZND-Kopenhagen', 420, 'Cláudio Silva', 672345678, 3),
     (null, 57440170, 'FZND-Lindt', 14, 'Bruno Hermida', 9134567890, 4),
-    (null, 57530971, 'FZND-Nestlé',13, 'Maria Bros', 6223567846, 5);
+    (null, 57530971, 'FZND-Nestlé',13, 'Maria Bros', 6223567846, 5);*/
     
-    
+desc canteiro;
 -- inserindo canteiros da fazenda 1    
 insert into Canteiro values
 		(null,'SideA', 1),
@@ -122,7 +124,7 @@ insert into Canteiro values
 		(null,'SideD', 1),
 		(null,'SideE', 1);
         
- -- inserindo canteiros da fazenda 2       
+ /*-- inserindo canteiros da fazenda 2       
 insert into Canteiro values
 		(null,'SideA', 2),
 	    (null,'SideB', 2),
@@ -162,7 +164,7 @@ insert into Sensor values
     (null, 'verde', 10),
     (null, 'roxo', 10);
     
-    
+   
 -- inserindo sensor canteiro 1 side B
 insert into Sensor values
 	(null, 'azul', 11),
@@ -194,52 +196,34 @@ insert into sensor values
     (null, 'vermelho', 14),
     (null, 'verde', 14),
     (null, 'roxo', 14);
-    
-    
---  inserindo dados dos sensores do canteiro 1 side a 
-insert into Captura values 
+   
+   
+/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
 
-(null, 23, '2022-10-15 18:00:59', 100),
-(null, 24, '2022-10-15 18:00:59', 101),
-(null, 22, '2022-10-15 18:00:59', 102),
-(null, 21, '2022-10-15 18:00:59', 103),
-(null, 23, '2022-10-15 18:00:59', 104);
+select * from canteiro;
 
--- inserindo dados dos sensores do canteiro 1 side b
-insert into captura values
+desc medida;
+create table medida (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	sensorAzul DECIMAL,
+	sensorAmarelo DECIMAL,
+	sensorVermelho DECIMAL,
+	sensorVerde DECIMAL,
+	sensorRoxo DECIMAL,
+	momento DATETIME default current_timestamp,
+	fkCanteiro INT,
+	FOREIGN KEY (fkCanteiro) REFERENCES canteiro(idCanteiro)
+);
 
-(null, 23, '2022-10-15 18:00:59', 105),
-(null, 24, '2022-10-15 18:00:59', 106),
-(null, 22, '2022-10-15 18:00:59', 107),
-(null, 21, '2022-10-15 18:00:59', 108),
-(null, 23, '2022-10-15 18:00:59', 109);
+select * from medida;
 
--- inserindo dados dos sensores do canteiro 1 side c
-insert into captura values
 
-(null, 23, '2022-10-15 18:00:59', 110),
-(null, 24, '2022-10-15 18:00:59', 111),
-(null, 22, '2022-10-15 18:00:59', 112),
-(null, 21, '2022-10-15 18:00:59', 113),
-(null, 23, '2022-10-15 18:00:59', 114);
+show tables;
+select * from canteiro;
+drop database sprintcacau;
+drop table medida;
+select * from medida;
 
--- inserindo dados dos sensores do canteiro 1 side d
-insert into captura values
-
-(null, 23, '2022-10-15 18:00:59', 115),
-(null, 24, '2022-10-15 18:00:59', 116),
-(null, 22, '2022-10-15 18:00:59', 117),
-(null, 21, '2022-10-15 18:00:59', 118),
-(null, 23, '2022-10-15 18:00:59', 119);
-
--- inserindo dados dos sensores do canteiro 1 side e
-insert into captura values
-
-(null, 23, '2022-10-15 18:00:59', 120),
-(null, 24, '2022-10-15 18:00:59', 121),
-(null, 22, '2022-10-15 18:00:59', 122),
-(null, 21, '2022-10-15 18:00:59', 123),
-(null, 23, '2022-10-15 18:00:59', 124);
 
         
 -- Alguns selects com join
@@ -250,6 +234,7 @@ Select * From CadastroEmpresa Join CadastroUsuario
 -- CadastroEmpresa + Fazenda
 Select * From CadastroEmpresa Join fazenda
 	ON idEmpresa = fkEmpresa;
+    
     
 -- fazenda + canteiro 
 Select * From fazenda Join canteiro
@@ -359,116 +344,9 @@ create table aquario (
 	descricao VARCHAR(300)
 );
 
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME default current_timestamp,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-
--- fkUnidade int,
-	-- foreign key (fkUnidade) references Unidade (idUnidade)
-
--- TABELA CORREDOR = independente da Unidade -> 1 unidade(loja) tem vários corredores e 1 corredor só esta em 1 unidade
-create table Corredor (
-idCorredor int primary key auto_increment,
-Setor varchar (45),
-NumeroCorredor int, check (NumeroCorredor > 0),
-fkFazenda int,
-foreign key (fkFazenda) references Fazenda (idFazenda)
-); 
-
--- TABELA SENSOR = independente do corredor -> 1 corredor tem 1 ou + sensores e 1 sensor só esta em 1 unico corredor
-create table Sensor (
-idSensor int primary key auto_increment,
-fkCorredor int,
-foreign key (fkCorredor) references Corredor (idCorredor)
-);
-
-select * from sensor;
-
-insert into sensor values
-(null, "Rosa", null);
-
--- TABELA DADOS DO SENSOR = depende do Sensor -> 1 sensor tem vários dados e 1 dado só pertence a 1 único sensor
-create table DadosSensor (
-idDadosSensor int auto_increment,
-sinal char (1),
-check (sinal = 0 or sinal = 1),
-dtHora datetime,
-fkSensor int,
-primary key (idDadosSensor,fkSensor),
-foreign key (fkSensor) references Sensor (idSensor)
-);
-
-select * from DadosSensor;
-select * from sensor;
-
-insert into sensor values
-(null, "Roxo",null);
-insert DadosSensor values
-(null, 1, '2021-01-01 20:00:00', 1);
-
-alter table sensor auto_increment = 1;
 
 
 
-insert into aquario values
-    (null,'aquario1');
- insert into aquario values
-    (null,'aquario2'); insert into aquario values
-    (null,'aquario3'); insert into aquario values
-    (null,'aquario4'); insert into aquario values
-    (null,'aquario5');
-    
-    insert into medida (id, dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_aquario) values
-    (null, '72', '23','22','860','1', 1);
-    
-    
-     insert into medida (id, dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_aquario) values
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    
-    (null, '72', '23','22','860','1', 2);
-    
-     insert into medida (id, dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_aquario) values
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    (null, '72', '23','22','860','1', 2),
-    
-    (null, '72', '23','22','860','1', 2); 
-   
-    insert into medida (id, dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_aquario) values
-    (null, '72', '23','22','860','1', 3);
-   
-   
-    insert into medida (id, dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_aquario) values
-    (null, '71', '22','23','850','0', 4),
-    (null, '71', '22','23','850','0', 4),
-    (null, '70', '22','23','870','0', 4),
-    (null, '70', '22','23','870','0', 4),
-    (null, '70', '23','23','850','0', 4),
-    (null, '70', '23','23','850','0', 4),
-    (null, '72', '23','23','850','0', 4),
-    (null, '71', '23','23','850','0', 4),
-    (null, '70', '22','22','860','1', 4),
-    (null, '72', '22','22','860','1', 4),
-    (null, '72', '22','22','870','0', 4),
-    (null, '72', '22','23','870','0', 4),
-    (null, '70', '23','23','860','0', 4),
-    (null, '70', '23','23','860','1', 4),
-    (null, '71', '23','23','860','1', 4);
     
     
 
