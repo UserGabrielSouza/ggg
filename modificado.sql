@@ -36,6 +36,7 @@ alter table CadastroUsuario rename column nome to nomeUsuario;
 alter table CadastroUsuario rename column Sobrenome to sobrenomeUsuario;
 alter table CadastroUsuario rename column TelCel to TelCelUsuario;
 alter table CadastroUsuario rename column senha to senhaUsuario;
+
 select * from CadastroUsuario;
 
 CREATE TABLE fazenda (
@@ -86,8 +87,8 @@ select * from CadastroEmpresa;
 select * from CadastroUsuario;
 select * from fazenda;
 Select * from canteiro;
-Select * from Sensor;
-select * from Captura;
+Select * from medida;
+
 
 -- inserindo dados nas tabelas
 insert into CadastroEmpresa values
@@ -215,14 +216,28 @@ create table medida (
 	FOREIGN KEY (fkCanteiro) REFERENCES canteiro(idCanteiro)
 );
 
+desc medida;
 select * from medida;
+insert into medida values 
+(null, 10, 28, 19, 29, 19 , '2022-10-08 09:00:001', 10);
 
+select * from medida;
+select * from canteiro;
 
 show tables;
 select * from canteiro;
 drop database sprintcacau;
 drop table medida;
 select * from medida;
+
+
+select 
+        sensorAmarelo, 
+                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+                        fkCanteiro 
+                        from medida where fkCanteiro = 10 
+                    order by id desc limit 1;
+
 
 
         
@@ -347,6 +362,15 @@ create table aquario (
 
 
 
+select 
+sensorAmarelo, 
+DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+fkCanteiro 
+from 
+medida 
+where fkCanteiro = 10
+order by id
+ desc limit 1;
     
     
 

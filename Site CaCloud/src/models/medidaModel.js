@@ -184,12 +184,11 @@ function buscarMedidasEmTempoReal(idCanteiro) {
 // sensor 2
 
 function buscarMedidasEmTempoReal2(idCanteiro) {
-
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top 1
-        sensorAmerelo,  
+        sensorAmarelo,  
                         CONVERT(varchar, momento, 108) as momento_grafico, 
                         fkCanteiro 
                         from medida where fkCanteiro = ${idCanteiro} 
